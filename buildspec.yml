@@ -4,7 +4,7 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/r5v1w0s4/ping-pong-game-repo-adv
+      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/r5v1w0s4/ping-pong-game-repo-adv
   build:
     commands:
       - echo Building the Docker image...
@@ -16,7 +16,7 @@ phases:
       - echo Pushing the Docker image to Amazon ECR...
       - docker push public.ecr.aws/r5v1w0s4/ping-pong-game-repo-adv:latest
       - echo Creating imagedefinitions.json file for ECS deployment...
-      - echo '[{"name":"ping-pong-container","imageUri":"public.ecr.aws/r5v1w0s4/ping-pong-game-repo-adv/ping-pong-game-repo-adv:latest"}]' > imagedefinitions.json
+      - echo '[{"name":"ping-pong-container","imageUri":"public.ecr.aws/r5v1w0s4/ping-pong-game-repo-adv:latest"}]' > imagedefinitions.json
 
 artifacts:
   files:
