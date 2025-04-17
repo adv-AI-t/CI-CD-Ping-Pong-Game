@@ -3,14 +3,14 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - echo Logging in to Amazon ECR Public...
-      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws
+      - echo Logging in to Amazon ECR...
+      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/r5v1w0s4
   build:
     commands:
       - echo Building the Docker image...
-      - docker build -t pingpong-game .
+      - docker build -t ping-pong-game-repo-adv .
       - echo Tagging the Docker image...
-      - docker tag pingpong-game:latest public.ecr.aws/r5v1w0s4/ping-pong-game-repo-adv:latest
+      - docker tag ping-pong-game-repo-adv:latest public.ecr.aws/r5v1w0s4/ping-pong-game-repo-adv:latest
   post_build:
     commands:
       - echo Pushing the Docker image to Amazon ECR...
